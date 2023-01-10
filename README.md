@@ -32,22 +32,24 @@ CREATE TABLE
 postgres=# \dt
 ```
 #Should give:
+```
              List of relations
  Schema |      Name      | Type  |  Owner   
 --------+----------------+-------+----------
  public | raw_trade_data | table | postgres
 (1 row)
-
+```
 #Now create hyper table:
 ```
 postgres=# SELECT create_hypertable('raw_trade_data', 'time');
 ```
 #Should give:
+```
       create_hypertable      
 -----------------------------
  (1,public,raw_trade_data,t)
 (1 row)
-
+```
 
 #After you run the main.py, you can check the data inside the container:
 #Get data from time descendent max 10 at a time:
@@ -55,6 +57,7 @@ postgres=# SELECT create_hypertable('raw_trade_data', 'time');
 SELECT * from raw_trade_data ORDER BY time desc LIMIT 10;
 ```
 #Output:
+```
         time         | symbol |  price   | quantity 
 ---------------------+--------+----------+----------
  2023-01-10 12:16:40 | ETHBTC | 0.077198 |   0.3236
@@ -69,5 +72,5 @@ SELECT * from raw_trade_data ORDER BY time desc LIMIT 10;
  2023-01-10 12:16:34 | ETHBTC | 0.077198 |   0.0854
 (10 rows)
 
-
+```
 
